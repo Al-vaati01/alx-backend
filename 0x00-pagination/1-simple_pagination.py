@@ -3,7 +3,7 @@
 pagination server class with index_range method
 """
 import csv
-# import math
+import math
 from typing import List
 
 
@@ -32,6 +32,11 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """
+        return the appropriate page of the dataset
+        """
+        page = math.floor(page)
+        page_size = math.floor(page_size)
         assert isinstance(page, int) and isinstance(
             page_size, int) and page > 0 and page_size > 0
         start, end = index_range(page, page_size)
