@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
 """
 pagination server class with index_range method
+and pagenated dataset from csv file
 """
+
 import csv
 import math
 from typing import List
 
 
 def index_range(page: int, page_size: int) -> tuple:
-    """helper function -> return a tuple of size two"""
+    """
+    helper function -> return a tuple of size two
+    """
     return ((page - 1) * page_size, page * page_size)
 
 
 class Server:
-    """Server class to paginate a database of popular baby names.
+    """
+    Server class to paginate a database of popular baby names.
     """
     DATA_FILE = "Popular_Baby_Names.csv"
 
@@ -21,7 +26,8 @@ class Server:
         self.__dataset = None
 
     def dataset(self) -> List[List]:
-        """Cached dataset
+        """
+        Cached dataset
         """
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
