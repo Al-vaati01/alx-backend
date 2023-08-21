@@ -5,7 +5,6 @@ and pagenated dataset from csv file
 """
 
 import csv
-import math
 from typing import List
 
 
@@ -41,8 +40,6 @@ class Server:
         """
         return the appropriate page of the dataset
         """
-        page = math.floor(page)
-        page_size = math.floor(page_size)
         assert isinstance(page, int) and isinstance(
             page_size, int) and page > 0 and page_size > 0
         start, end = index_range(page, page_size)
