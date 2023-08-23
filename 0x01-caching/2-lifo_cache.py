@@ -18,20 +18,12 @@ class LIFOCache(BaseCaching):
         """Adds element and removes first element if cache is full"""
         if not key or not item:
             return
-        self.cache_data.update({key: item})
-        if len(self.cache_data.items()) > self.MAX_ITEMS:
-            if self.count == 1:
-                last_item = [x for x in self.cache_data.keys()]
-                last_item.reverse()
-                self.cache_data.pop(last_item[2])
-                print('DICARD: {}'.format(last_item[2]))
-                self.count = 0
-            else:
-                last_item = [x for x in self.cache_data.keys()]
-                last_item.reverse()
-                self.cache_data.pop(last_item[1])
-                print('DICARD: {}'.format(last_item[1]))
-                self.count = 1
+        self.cache_data[key] = item
+        if len(self.cache_data.items()) > BaseCaching.MAX_ITEMS:
+            last_item = [x for x in self.cache_data.keys()]
+            last_item.reverse()
+            self.cache_data.pop(last_item[1])
+            print('DICARD: {}'.format(last_item[1]))
 
     def get(self, key):
         """gets item from cache by key"""
