@@ -19,11 +19,10 @@ class FIFOCache(BaseCaching):
         """Adds element and removes first element if cache is full"""
         if not key or not item:
             return
-
+        self.cache_data.update({key: item})
         if len(self.cache_data.items()) > self.MAX_ITEMS:
             first_item = [x for x in self.cache_data.keys()]
             self.cache_data.pop(first_item[0])
-            self.cache_data.update({key: item})
             print("DISCARD: {}".format(first_item[0]))
 
     def get(self, key):
