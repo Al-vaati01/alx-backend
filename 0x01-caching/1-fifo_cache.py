@@ -26,7 +26,7 @@ class FIFOCache(BaseCaching):
             print('DICARD: {}'.format(first_item[0]))
 
     def get(self, key):
-        """gets item in cache by key"""
+        """gets item from cache by key"""
         if key is None or key not in self.cache_data.keys():
             return None
-        self.cache_data.get(key)
+        return self.cache_data.get(key)
