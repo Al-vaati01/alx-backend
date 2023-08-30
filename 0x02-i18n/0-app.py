@@ -8,8 +8,7 @@ which renders an HTML template named '0-index.html'. This template can be
 customized
 for different languages or content.
 """
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
