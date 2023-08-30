@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Flask i18n app"""
 from flask import Flask, render_template, request, globals
 from flask_babel import Babel
 
@@ -7,6 +8,7 @@ app = Flask(__name__)
 
 
 class Config:
+    """config class"""
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
@@ -17,7 +19,8 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
+    """get locale to config language"""
     locale = request.args.get('locale')
     if locale and locale in app.config['LANGUAGES']:
         return locale
@@ -32,7 +35,8 @@ users = {
 }
 
 
-def get_user():
+def get_user() -> dict:
+    """checks if user exist or returns None"""
     login_as = request.args.get('login_as')
     if not login_as and login_as not in users.keys():
         return None
@@ -40,12 +44,14 @@ def get_user():
 
 
 @app.before_request
-def before_request():
+def before_request() -> None:
+    """find a user if any, and set it as a global on flask.g.user"""
     globals.g.setdefault(request.args.get('login_as'), get_user())
 
 
 @app.route("/")
-def hello():
+def hello() -> str:
+    """home function"""
     user = globals.g.get(request.args.get('login_as'))
     username = user.get('name')
     return render_template('5-index.html', username=username)
