@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-simple flask i18n app
+Simple Flask i18n App
+This script creates a basic internationalization (i18n) web
+application using Flask
 """
 from flask import Flask
 from flask import render_template
